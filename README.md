@@ -25,4 +25,4 @@ measure different kinds of parameter such as temperature, distance, capacitance,
 10. Voltage sensor or (7.5k & 30k) 5 band Resistor. 
 
 # CIRCUIT DIAGRAM
-![Schematic_arduino_multimeter_2023-08-07](https://github.com/hemanth2002/arduino_multimeter/assets/72966457/affcd837-ac4a-4a47-aeaf-23c96b131605)
+![Schematic_arduino_multimeter_2023-08-07](https://github.com/hemanth2002/arduino_multimeter/assets/72966457/03722abd-b0aa-4e80-8e46-826e38cc5cfd)
