@@ -378,7 +378,7 @@ void voltmeter()
   delay(1000);
 
   int value = 0;
-  float ref_voltage, voltage, R1 = 95000.00, R2 = 5000.00;
+  float ref_voltage, voltage, R1 = 30000.00, R2 = 7500.00;
 
   while(digitalRead(back))
   {
