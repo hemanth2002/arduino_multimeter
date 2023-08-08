@@ -367,25 +367,16 @@ void battery()
 {
 
   int value = 0;
-  float voltage, perc;
+  float ref_voltage, voltage, R1 = 95000.00, R2 = 5000.00;
 
   value = analogRead(A2); 
-  voltage = value * 3.7 / 1024;
-  perc = float_map(voltage, 3.0, 4.2, 0, 100);
+  ref_voltage = (value * 5) / 1024;
+  voltage = (ref_voltage * (R2 / (R1 + R2)));
   u8g2.clearBuffer();
-  u8g2.drawStr(0,20,"Voltage");
-  u8g2.setCursor(50, 20); 
+  u8g2.drawStr(0,20,"Voltage = ");
+  u8g2.setCursor(60, 20); 
   u8g2.print(voltage);
-  u8g2.drawStr(0,40,"Battery");
-  u8g2.setCursor(50, 40);
-  u8g2.print(perc);
   u8g2.sendBuffer();
-}
-
-//-------------------------------------------------------
-
-long float_map(float x, float in_min, float in_max, float out_min, float out_max){
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
