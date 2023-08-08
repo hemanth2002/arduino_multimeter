@@ -72,6 +72,10 @@ void loop() {
   case 4:
         menu3();
         display1();
+        break;
+  case 5:
+        menu3();
+        display2();
         break;                   
   }
 
@@ -126,7 +130,7 @@ void menu3() {
   u8g2.clearBuffer();
   u8g2.drawStr(14,17,"SELECT MODE");
   u8g2.drawStr(30, 38, "SETTINGS");
-
+  u8g2.drawStr(25, 38, "VOLT METER");
 }
 
 //-------------------------------------------------------
@@ -365,10 +369,17 @@ void temperature()
 
 void battery()
 {
+  u8g2.clearBuffer();
+  u8g2.drawStr(0,20,"VOLTAGE");
+  u8g2.sendBuffer();
+  u8g2.drawStr(0,40,"METER");
+  u8g2.sendBuffer();
+  delay(1000);
 
   int value = 0;
   float ref_voltage, voltage, R1 = 95000.00, R2 = 5000.00;
 
+  
   value = analogRead(A2); 
   ref_voltage = (value * 5) / 1024;
   voltage = (ref_voltage * (R2 / (R1 + R2)));
