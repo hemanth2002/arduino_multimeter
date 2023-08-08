@@ -27,8 +27,6 @@ void setup() {
   pinMode(enter, INPUT_PULLUP);
   pinMode(back, INPUT_PULLUP);
   pinMode(buzz, OUTPUT);
-  battery();
-  delay(5000);
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
@@ -99,6 +97,9 @@ void loop() {
           temperature();
           break;  
     case 4:
+          voltmeter();
+          break;
+    case 5:
           setting();
           break;
     }
@@ -129,8 +130,8 @@ void menu3() {
 
   u8g2.clearBuffer();
   u8g2.drawStr(14,17,"SELECT MODE");
-  u8g2.drawStr(30, 38, "SETTINGS");
-  u8g2.drawStr(25, 38, "VOLT METER");
+  u8g2.drawStr(30, 38, "VOLTMETER");
+  u8g2.drawStr(25, 38, "SETTINGS");
 }
 
 //-------------------------------------------------------
@@ -367,7 +368,7 @@ void temperature()
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 
-void battery()
+void voltage()
 {
   u8g2.clearBuffer();
   u8g2.drawStr(0,20,"VOLTAGE");
@@ -379,15 +380,18 @@ void battery()
   int value = 0;
   float ref_voltage, voltage, R1 = 95000.00, R2 = 5000.00;
 
-  
-  value = analogRead(A2); 
-  ref_voltage = (value * 5) / 1024;
-  voltage = (ref_voltage * (R2 / (R1 + R2)));
-  u8g2.clearBuffer();
-  u8g2.drawStr(0,20,"Voltage = ");
-  u8g2.setCursor(60, 20); 
-  u8g2.print(voltage);
-  u8g2.sendBuffer();
+  while(digitalRead(back))
+  {
+    value = analogRead(A2); 
+    ref_voltage = (value * 5) / 1024;
+    voltage = (ref_voltage * (R2 / (R1 + R2)));
+    u8g2.clearBuffer();
+    u8g2.drawStr(0,20,"Voltage = ");
+    u8g2.setCursor(60, 20); 
+    u8g2.print(voltage);
+    u8g2.sendBuffer();
+    delay(100);
+  }
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
